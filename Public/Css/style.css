@@ -1,0 +1,86 @@
+body,tr{
+	margin: 0;
+	padding: 0;
+
+}
+body{
+	background:url(../Images/维修单5.png) no-repeat;width:auto;height:auto;background-size:cover;
+}
+
+.main{
+
+	position:relative ;
+
+}
+.head{
+	height: 20%;
+	width: 100%;
+	float: left;
+
+}
+.head img{
+	height: 20%;
+	width: 60%;
+	margin-left: 20%;
+	margin-top: 5%;
+}
+.png{
+
+	height:20%;
+	width: 102%;
+	float: left;
+	position: relative;
+
+}
+.png img{
+	width: 100%;
+	height: 100%;
+	margin-left: -0.5%;
+}
+.content{
+	height: 50%;
+	width: 80%;
+	position:relative;
+	left: 10%;
+	top: 20%;
+}
+.tf{
+	margin-top: 50%;
+}
+.table{
+	font-size: 50px;
+	height:130px;
+	font-weight: bolder;
+}
+
+.inputs{
+	border: none;
+	border-bottom: 3px dashed #060606;
+	width: 100%;
+
+	background: none;
+	font-size: 50px;
+}
+
+.input{position:relative;
+	width: 176%;
+	margin-top: -20px;
+}
+.word{position:absolute;line-height:120px;left:0px;top:10px;z-index:10;background:#fff}
+.input textarea{border:none; text-indent:32%;line-height:120px;background:url(../Images/wo2.png) repeat;font-size: 50px;}
+.post{
+	height: 71px;
+	width: 160px;
+	background: none;
+	float: left;
+
+	background: url(../Images/158086708990264479.jpg) no-repeat;
+	margin-left:125%;
+	margin-top: -70px;
+}
+
+
+
+
+
+

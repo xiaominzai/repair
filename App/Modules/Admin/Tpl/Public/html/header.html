@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <title>维修后台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="__PUBLIC__/assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="__PUBLIC__/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/assets/lineicons/style.css">
+
+    <!-- Custom styles for this template -->
+    <link href="__PUBLIC__/assets/css/style.css" rel="stylesheet">
+    <link href="__PUBLIC__/assets/css/style-responsive.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--自己的js文件-->
+    <script src="__PUBLIC__/js/login.js"></script>
+    <script src="__PUBLIC__/js/jquery-3.1.1.min.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+</head>
+
+<body>
+
+<section id="container" >
+    <!-- **********************************************************************************************************************************************************
+    TOP BAR CONTENT & NOTIFICATIONS
+    *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+        <div class="sidebar-toggle-box">
+            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+        </div>
+        <!--logo start-->
+        <a href="index.html" class="logo"><b>维修后台</b></a>
+        <!--logo end-->
+        <div class="top-menu">
+            <ul class="nav pull-right top-menu">
+                <li><a class="logout" href="javascript:void(loginout('{:U(GROUP_NAME."/Index/loginout")}'))" >退出登录</a></li>
+            </ul>
+        </div>
+    </header>
+    <!--header end-->
+
+    <!-- **********************************************************************************************************************************************************
+    MAIN SIDEBAR MENU
+    *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+
+                <p class="centered"><img src="__PUBLIC__/assets/img/ui-sam.jpg" class="img-circle" width="60"></p>
+                <h5 class="centered">菜单栏</h5>
+
+                <li class="mt">
+                    <a href="{:U(GROUP_NAME.'/Index/index')}" >
+                        <i class="fa fa-dashboard"></i>
+                        <span>主页</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="{:U(GROUP_NAME.'/Index/haveRepair')}" >
+                        <i class="fa fa-cogs"></i>
+                        <span>已维修好</span>
+                    </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="{:U(GROUP_NAME.'/Index/allRepair')}" >
+                        <i class="fa fa-cogs"></i>
+                        <span>所有预约</span>
+                    </a>
+                </li>
+
+                <!--根据权限显示节点-->
+                <if condition="$power eq 1">
+                    <li class="sub-menu">
+                        <a href="javascript:;" >
+                            <i class="fa fa-th"></i>
+                            <span>管理员管理</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="{:U(GROUP_NAME.'/Char/index')}">视图</a></li>
+                            <li class="sub-menu"><a href="{:U(GROUP_NAME.'/Index/trash')}" >回收站</a></li>
+                            <li><a  href="{:U(GROUP_NAME.'/Admin/index')}">管理员列表</a></li>
+
+                        </ul>
+                    </li>
+                </if>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->

@@ -1,0 +1,195 @@
+<include file="App/Modules/Admin/Tpl/Public/html/header.html" />
+    <!-- **********************************************************************************************************************************************************
+    MAIN CONTENT
+    *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+<script src="__PUBLIC__/js/echarts.js"></script>
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <h3><i class="fa fa-angle-right"></i>数据表单</h3>
+            <!-- page start-->
+            <div id="morris">
+                <div class="row mt">
+                    <div class="col-lg-6">
+                        <div class="content-panel" id="month" style="width:892px;height: 436px;" >
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="content-panel" id="quarter" style="width:892px;height: 436px;">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt">
+                    <div class="col-lg-6">
+                        <div class="content-panel" id="dept" style="width: 892px;height: 436px;">
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="content-panel" id="handle" style="width:892px;height: 436px;">
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- page end-->
+        </section>
+    </section><!-- /MAIN CONTENT -->
+
+    <!--main content end-->
+<script>
+    //月份数据显示
+    var month = echarts.init(document.getElementById('month'));
+    month.setOption({
+        title: {
+            text: '月份提交维修'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['趋势','数量']
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '数量',
+            type: 'bar',
+            data: []
+        },
+            {
+                name:'趋势',
+                type:'line',
+                data:[]
+            }
+        ]
+    });
+    month.showLoading();
+    $.get("{:U(GROUP_NAME.'/Char/showMonth')}").done(function (data) {
+        month.hideLoading();
+        //填入数据
+        month.setOption({
+            xAxis: {
+                data: data.x
+            },
+            series: [{
+                // 根据名字对应到相应的系列
+                name: '数量',
+                data: data.y
+            },
+                {
+                    name:"趋势",
+                    data:data.y
+                }
+            ]
+        });
+    });
+
+
+    //季度数据显示
+    var quartry = echarts.init(document.getElementById('quarter'));
+    quartry.setOption({
+        title:{
+            text:"季度提交"
+        },
+        tooltip:{
+            trigger: 'axis'
+        },
+        legend:{
+            data:['数量','趋势']
+        },
+        xAxis:{
+            data:[]
+        },
+        yAxis:{},
+        series:[{
+            name:"数量",
+            type:"bar",
+            data:[]
+        },{
+            name:"趋势",
+            type:"line",
+            data:[]
+        }
+        ]
+    });
+    quartry.showLoading();
+    $.get("{:U(GROUP_NAME.'/Char/showQuarter')}").done(function (resule) {
+        quartry.hideLoading();
+        quartry.setOption({
+            xAxis:{
+                data: resule.x
+            },
+            series:[{
+                name:"数量",
+                data: resule.y
+            },{
+                name:"趋势",
+                data:resule.y
+            }]
+        });
+    });
+
+    //宿舍分析
+    var dept = echarts.init(document.getElementById('dept'));
+    dept.setOption({
+        title:{
+          text:"宿舍分布"
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series : [
+            {
+                name: '宿舍分布',
+                type: 'pie',
+                radius: '55%',
+                data:[]
+            }
+        ]
+    });
+    dept.showLoading();
+    $.get("{:U(GROUP_NAME.'/Char/showDept')}").done(function (result) {
+        dept.hideLoading();
+        dept.setOption({
+            series:[{
+                data:result
+            }]
+        })
+    });
+
+    //处理人分析
+    var handle = echarts.init(document.getElementById('handle'));
+    handle.setOption({
+        title:{
+          text:'管理员维修比例'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        series:[{
+            name:"处理人分布",
+            type:"pie",
+            radius:"55%",
+            data:[]
+        }]
+    });
+    handle.showLoading();
+    $.get("{:U(GROUP_NAME.'/Char/showHandle')}").done(function (result) {
+        handle.hideLoading();
+        handle.setOption({
+            series:[{
+                data:result
+            }]
+        })
+    })
+</script>
+
+<include file="App/Modules/Admin/Tpl/Public/html/footer.html" />
